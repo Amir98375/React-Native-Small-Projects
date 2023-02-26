@@ -7,6 +7,9 @@ import {
   Image,
   TextInput,
   ScrollView,
+  FlatList,
+  Button,
+  Alert,
 } from "react-native";
 
 export default function App() {
@@ -15,6 +18,34 @@ export default function App() {
   const [count,setCounter]=useState(0)
   const [hour,sethour]=useState(0)
   const [minuite,setMin]=useState(0)
+  const arrList=['Java','Kotlin','Node.js','Python','Javascript']
+
+
+const onPressHandle = (event) =>
+
+  Alert.alert(
+    'Pay Amount',
+    'Please confrim to pay',
+    [
+      {
+        text: 'Cancel',
+       
+        style: 'cancel',
+      },
+      {
+        text: 'Ok',
+       
+        style: 'ok',
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert(
+          'This alert was dismissed by tapping outside of the alert dialog.',
+        ),
+    },
+  );
 
   const Blink=props=>{
     const [isShowingText, setIsShowingText] = useState(true);
@@ -36,7 +67,7 @@ export default function App() {
   }
   
   const Counter=props=>{
-    console.log(props.value,"called props")
+   
     useEffect(()=>{
      let countVal=setInterval(()=>{
       if(count>59){
@@ -70,19 +101,24 @@ export default function App() {
         }}
         style={{ width: 200, height: 200, alignSelf: "center" }}
       ></Image>
-      <TextInput
+<View style={{display:'flex' , justifyContent:'space-around' ,width:200,alignItems:'center',
+gap:10,
+alignSelf:'center'}}>
+<TextInput
       placeholder="Type something here"
         onChange={(e) => setValue(e.target.value)}
         style={{
           height: 40,
           borderColor: "gray",
           borderWidth: 1,
-          width: 200,
+         
           alignSelf: "center",
           alignContent: "center",
         }}
         value={value}
       />
+      
+</View>
      {/* <View style={{marginTop: 50}}>
       <Blink text="I love to blink" />
       <Blink text="Yes blinking is so great" />
@@ -90,8 +126,17 @@ export default function App() {
       <Blink text="Look at me look at me look at me" />
     </View> */}
     <View style={{marginTop:50}}>
+    <Text style={{alignSelf:'center',color:'red'}}>Digital Watch </Text>
       <Counter sec={count} min={minuite} hour={hour}/>
     </View>
+    <Text style={{alignSelf:'center',color:'red'}}>List </Text>
+    <View style={{alignItems:'center'}}>
+      <FlatList data={arrList}
+        renderItem={({item}) =>
+         <Text >{item}</Text>}/>
+    </View>
+    <Button title="Cancel" style={{width:100}}
+      onPress={()=>onPressHandle()}/>
     </ScrollView>
   );
 }
