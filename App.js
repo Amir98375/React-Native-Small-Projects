@@ -10,7 +10,10 @@ import {
   FlatList,
   Button,
   Alert,
+
 } from "react-native";
+import { Navbar } from "./Components/Navbar.js";
+
 
 export default function App() {
   const [state, setState] = useState(true);
@@ -20,7 +23,7 @@ export default function App() {
   const [minuite,setMin]=useState(0)
   const arrList=['Java','Kotlin','Node.js','Python','Javascript']
 
-
+// console.log(Platform,"Plateform")
 const onPressHandle = (event) =>
 
   Alert.alert(
@@ -90,7 +93,15 @@ const onPressHandle = (event) =>
     }
   
   return (
+  
     <ScrollView>
+ <Navbar/>
+      <View>
+    
+   <Button title="Cancel"
+      onPress={()=>onPressHandle()}/>
+ 
+      </View>
       <Text style={{ marginTop: 100, alignSelf: "center" }}>
         My First React Native project
       </Text>
@@ -112,8 +123,7 @@ alignSelf:'center'}}>
           borderColor: "gray",
           borderWidth: 1,
          
-          alignSelf: "center",
-          alignContent: "center",
+       
         }}
         value={value}
       />
@@ -135,8 +145,8 @@ alignSelf:'center'}}>
         renderItem={({item}) =>
          <Text >{item}</Text>}/>
     </View>
-    <Button title="Cancel" style={{width:100}}
-      onPress={()=>onPressHandle()}/>
+
+
     </ScrollView>
   );
 }
