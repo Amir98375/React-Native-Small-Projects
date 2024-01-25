@@ -22,6 +22,7 @@ export default function App() {
   const [hour,sethour]=useState(0)
   const [minuite,setMin]=useState(0)
   const arrList=['Java','Kotlin','Node.js','Python','Javascript']
+  
 
 // console.log(Platform,"Plateform")
 const onPressHandle = (event) =>
@@ -69,7 +70,7 @@ const onPressHandle = (event) =>
   style={{alignSelf:'center'}}>{props.text}</Text>;
   }
   
-  const Counter=props=>{
+  const Counter=(props)=>{
    
     useEffect(()=>{
      let countVal=setInterval(()=>{
